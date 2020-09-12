@@ -8,11 +8,6 @@ function Home() {
     return (
         <Fragment>
             <div className="container home">
-                <div className="row m-10">
-                    {/* <div className="col-12">
-                        <img className="img-fluid logo" src="https://media.redadn.es/css/i/p/cab_pokedex.jpg" alt="Pokeapi"/>
-                    </div> */}{/*Esta imagen era un extra, se quito para dar mas vista en el Home */}
-                </div>
                 <div className="row align-items-center mt-3">
                     <div className="col-12 col-lg-6 text-center text-lg-left text-white">
                         <h1 className="text-uppercase">La pokedex esencial para un maestro</h1>

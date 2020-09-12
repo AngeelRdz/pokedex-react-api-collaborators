@@ -23,25 +23,40 @@ class Pokemons extends Component {
 
         this.setState({ loading: true, error: null });
         try {
-            // Se traen los datos de la pokeapi y se almacenan en el estado.
-            // Cuando termine de taerlos, también cambiará el valor de loading 
-            // en el estado en falso
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=150`)
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=50`)
             const data = await response.json()
             this.setState({ 
                 loading: false, 
                 data: data
               });
         } catch (error) {
-            // Si hay un error, se manda este error al estado para poder mostrarlo en pantalla
+
             this.setState({ loading: false, error: error });
         }
     }
-    
+
+    handleOpenModal = e => {
+        this.setState({modalIsOpen: true})
+    }
+
+    handleCloseModal = e => {
+        this.setState({modalIsOpen: false})
+    }
+
+    handleCheckboxChange = e => {
+        if (e.target.checked === true & this.state.selectedPokemons.length < 10){
+            this.setState({selectedPokemons: [
+                ...this.state.selectedPokemons,
+                {name : e.target.id}
+            ]})
+        }
+    }
+
+    handleSave = e => {
+        this.props.history.push('/')
+    }
+
     render() {
-        // Si los datos aún no terminan de cargar completamente, 
-        // se presentará un loader para informar al usuario que 
-        // se están cargando.
         if (this.state.loading === true) {
             return <Loader/>
         }
